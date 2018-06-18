@@ -1,3 +1,5 @@
+#Requires -Modules dbatools
+
 $dbs = (Get-DbaDatabaseFile -SqlInstance localhost).where({$_.PhysicalName -like "H:\Data*"  -and $_.TypeDescription -eq "ROWS" -and $_.PhysicalName -notlike "*temp*" -and $_.PhysicalName -notlike "*.ldf" -and $_.PhysicalName -notlike "*-evil.mdf*"})
 
 foreach($db in $dbs){
